@@ -218,6 +218,6 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 ## Acknowledgment
 
-This project is a fork of [paultyng/go-unifi](https://github.com/paultyng/go-unifi). Huge thanks to Paul Tyng together with the rest of maintainers for creating and maintaining the original SDK,
+This project is a fork of [filipowm/go-unifi](https://github.com/filipowm/go-unifi) which is a fork of [paultyng/go-unifi](https://github.com/paultyng/go-unifi). Huge thanks to Mateusz Filipowicz and Paul Tyng together with the rest of maintainers for creating and maintaining the original SDK,
 which provided an excellent foundation for this fork, and is great piece of engineering work. The fork was created to introduce several improvements including keeping it up to date with the latest UniFi Controller versions, more dev-friendly client usage, enhanced error handling, additional API endpoints support,
 improved documentation, better test coverage, and various bug fixes. It's goal is to provide a stable, up to date and reliable SDK for the UniFi Network Controller API.

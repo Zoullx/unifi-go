@@ -16,6 +16,21 @@ func (c *client) GetBroadcastGroup(ctx context.Context, site, id string) (*Broad
 	return c.getBroadcastGroup(ctx, site, id)
 }
 
+func (c *client) GetBroadcastGroupByName(ctx context.Context, site, name string) (*BroadcastGroup, error) {
+	broadcastGroups, err := c.listBroadcastGroup(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, b := range broadcastGroups {
+		if b.Name == name {
+			return &b, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteBroadcastGroup(ctx context.Context, site, id string) error {
 	return c.deleteBroadcastGroup(ctx, site, id)
 }

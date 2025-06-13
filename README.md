@@ -1,28 +1,29 @@
 # UniFi Go SDK
-![GitHub Release](https://img.shields.io/github/v/release/filipowm/go-unifi)
-[![Docs](https://img.shields.io/badge/docs-reference-blue)](https://github.com/filipowm/go-unifi/blob/main/docs/readme.md)
-[![GoDoc](https://godoc.org/github.com/filipowm/go-unifi?status.svg)](https://godoc.org/github.com/filipowm/go-unifi)
-![GitHub branch check runs](https://img.shields.io/github/check-runs/filipowm/go-unifi/main)
-![GitHub License](https://img.shields.io/github/license/filipowm/go-unifi)
 
-This SDK provides a Go client for the UniFi Network Controller API. It is used primarily in the [Terraform provider for UniFi](https://github.com/filipowm/terraform-provider-unifi),
+![GitHub Release](https://img.shields.io/github/v/release/zoullx/go-unifi)
+[![Docs](https://img.shields.io/badge/docs-reference-blue)](https://github.com/zoullx/go-unifi/blob/main/docs/readme.md)
+[![GoDoc](https://godoc.org/github.com/zoullx/go-unifi?status.svg)](https://godoc.org/github.com/zoullx/go-unifi)
+![GitHub branch check runs](https://img.shields.io/github/check-runs/zoullx/go-unifi/main)
+![GitHub License](https://img.shields.io/github/license/zoullx/go-unifi)
+
+This SDK provides a Go client for the UniFi Network Controller API. It is used primarily in the [Terraform provider for UniFi](https://github.com/zoullx/terraform-provider-unifi),
 but can be used independently for any Go project requiring UniFi Network Controller API integration.
 
 Check out the detailed [documentation](docs/readme.md) for more information.
 
 ## Features
 
-- Great UniFi Network Controller API coverage through automated code generation and manually added code for undocumented endpoints
-- Easy to use client with support for API Key and username/password authentication
-- Generated data models from UniFi Controller API specifications
-- Daily automated updates to track the latest UniFi Controller versions
-- Support for multiple UniFi Controller versions
-- Strong typing for all API models with Go structs
+-   Great UniFi Network Controller API coverage through automated code generation and manually added code for undocumented endpoints
+-   Easy to use client with support for API Key and username/password authentication
+-   Generated data models from UniFi Controller API specifications
+-   Daily automated updates to track the latest UniFi Controller versions
+-   Support for multiple UniFi Controller versions
+-   Strong typing for all API models with Go structs
 
 ## Supported UniFi Controller Versions
 
 Any version after 5.12.35 is supported as of now. **Latest version: 9.0.114**.
-The SDK is updated daily to track the latest UniFi Controller versions. 
+The SDK is updated daily to track the latest UniFi Controller versions.
 If you encounter any issues with the latest UniFi Controller version, please open an issue.
 
 ## Code Generation
@@ -41,7 +42,7 @@ challenging to directly use Java classes. Contributions and suggestions for impr
 
 ## Migrating from `paultyng/go-unifi`
 
-If you already use `paultyng/go-unifi`, you can easily migrate to this SDK, because it is a fork and the SDK is fully compatible with the original one. 
+If you already use `paultyng/go-unifi`, you can easily migrate to this SDK, because it is a fork and the SDK is fully compatible with the original one.
 Check out the [migration guide](docs/migrating_from_upstream.md) for information on how to migrate from the upstream `paultyng/go-unifi` SDK.
 
 ## Usage
@@ -50,6 +51,7 @@ Unifi client support both username/password and API Key authentication. It is re
 as well as dedicated user restricted to local access only.
 
 ### Obtaining an API Key
+
 1. Open your Site in UniFi Site Manager
 2. Click on `Control Plane -> Admins & Users`.
 3. Select your Admin user.
@@ -87,7 +89,7 @@ c, err := unifi.NewClient(&unifi.ClientConfig{
 })
 ```
 
-List of available client configuration options is available [here](https://pkg.go.dev/github.com/filipowm/go-unifi/unifi#ClientConfig).
+List of available client configuration options is available [here](https://pkg.go.dev/github.com/zoullx/go-unifi/unifi#ClientConfig).
 
 ### Customizing HTTP Client
 
@@ -108,7 +110,7 @@ c, err := unifi.NewClient(&unifi.ClientConfig{
 You can use interceptors to modify requests and responses. This gives you more control over the client behavior
 and flexibility to add custom logic.
 
-To use interceptor logic, you need to create a struct implementing [ClientInterceptor](https://pkg.go.dev/github.com/filipowm/go-unifi/unifi#ClientInterceptor) interface.
+To use interceptor logic, you need to create a struct implementing [ClientInterceptor](https://pkg.go.dev/github.com/zoullx/go-unifi/unifi#ClientInterceptor) interface.
 For example, you can use interceptors to log requests and responses:
 
 ```go
@@ -132,14 +134,15 @@ c, err := unifi.NewClient(&unifi.ClientConfig{
 
 ### Client-side validation
 
-The SDK provides basic validation for the API models. It is recommended to use it to ensure that the data you are sending 
-to the UniFi Controller is correct. The validation is based on the regex and validation rules provided in 
+The SDK provides basic validation for the API models. It is recommended to use it to ensure that the data you are sending
+to the UniFi Controller is correct. The validation is based on the regex and validation rules provided in
 the UniFi Controller API specs extracted from the JAR files.
 
 Client supports 3 modes of validation:
-- `unifi.SoftValidation` (_default_) - will log a warning if any of the fields are invalid before sending the request, but will not stop the request
-- `unifi.HardValidation` - will return an error if any of the fields are invalid before sending the request
-- `unifi.DisableValidation` - will disable validation completely
+
+-   `unifi.SoftValidation` (_default_) - will log a warning if any of the fields are invalid before sending the request, but will not stop the request
+-   `unifi.HardValidation` - will return an error if any of the fields are invalid before sending the request
+-   `unifi.DisableValidation` - will disable validation completely
 
 To change the validation mode, you can use the `ValidationMode` field in the client configuration:
 
@@ -168,44 +171,46 @@ if err != nil {
 }
 ```
 
-`Root` error is `validator.ValidationErrors` struct from [go-playground/validator](https://pkg.go.dev/github.com/go-playground/validator/v10#ValidationErrors), 
+`Root` error is `validator.ValidationErrors` struct from [go-playground/validator](https://pkg.go.dev/github.com/go-playground/validator/v10#ValidationErrors),
 which contains detailed information about the validation errors.
 
 ### Examples
 
 List all available networks:
+
 ```go
 network, err := c.ListNetwork(ctx, "site-name")
 ```
 
 Create user assigned to network:
+
 ```go
 user, err := c.CreateUser(ctx, "site-name", &unifi.User{
     Name:      "My Network User",
-    MAC:       "00:00:00:00:00:00", 
-    NetworkID: network[0].ID, 
+    MAC:       "00:00:00:00:00:00",
+    NetworkID: network[0].ID,
     IP:        "10.0.21.37",
 })
 ```
 
 ## Plans
 
-- [ ] Support Unifi Controller API V2
-  - [x] AP Groups
-  - [x] DNS Records
-  - [x] Zone-based firewalls
-  - [ ] Traffic management
-  - [ ] other...?
-- [x] Increase API coverage, or modify code generation to rely on the official UniFi Controller API specifications
-- [x] Improve error handling (currently only basic error handling is implemented and error details are not propagated)
-- [x] Improve client code for better usability
-- [x] Support API Key authentication
-- [x] Generate client code for currently generated API structures, for use within or outside the Terraform provider
-- [ ] Increase test coverage
-- [x] Implement validation for fields and structures
-- [ ] Extend validators for more complex cases
-- [x] Add more documentation and examples
-- [ ] Bugfixing...
+-   [ ] Support Unifi Controller API V2
+    -   [x] AP Groups
+    -   [x] DNS Records
+    -   [x] Zone-based firewalls
+    -   [ ] Traffic management
+    -   [ ] other...?
+-   [x] Increase API coverage, or modify code generation to rely on the official UniFi Controller API specifications
+-   [x] Improve error handling (currently only basic error handling is implemented and error details are not propagated)
+-   [x] Improve client code for better usability
+-   [x] Support API Key authentication
+-   [x] Generate client code for currently generated API structures, for use within or outside the Terraform provider
+-   [ ] Increase test coverage
+-   [x] Implement validation for fields and structures
+-   [ ] Extend validators for more complex cases
+-   [x] Add more documentation and examples
+-   [ ] Bugfixing...
 
 ## Contributing
 

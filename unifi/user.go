@@ -185,6 +185,21 @@ func (c *client) GetUser(ctx context.Context, site, id string) (*User, error) {
 	return c.getUser(ctx, site, id)
 }
 
+func (c *client) GetUserByName(ctx context.Context, site, name string) (*User, error) {
+	users, err := c.listUser(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, u := range users {
+		if u.Name == name {
+			return &u, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) UpdateUser(ctx context.Context, site string, d *User) (*User, error) {
 	return c.updateUser(ctx, site, d)
 }

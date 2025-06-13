@@ -12,6 +12,21 @@ func (c *client) GetSpatialRecord(ctx context.Context, site, id string) (*Spatia
 	return c.getSpatialRecord(ctx, site, id)
 }
 
+func (c *client) GetSpatialRecordByName(ctx context.Context, site, name string) (*SpatialRecord, error) {
+	spatialRecords, err := c.listSpatialRecord(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, s := range spatialRecords {
+		if s.Name == name {
+			return &s, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteSpatialRecord(ctx context.Context, site, id string) error {
 	return c.deleteSpatialRecord(ctx, site, id)
 }

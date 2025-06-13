@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/filipowm/go-unifi/unifi"
 	"github.com/tj/assert"
+	"github.com/zoullx/unifi-go/unifi"
 )
 
 func TestAccountMarshalJSON(t *testing.T) {

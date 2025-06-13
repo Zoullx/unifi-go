@@ -33,6 +33,21 @@ func (c *client) GetAccount(ctx context.Context, site, id string) (*Account, err
 	return c.getAccount(ctx, site, id)
 }
 
+func (c *client) GetAccountByName(ctx context.Context, site, name string) (*Account, error) {
+	accounts, err := c.listAccount(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, a := range accounts {
+		if a.Name == name {
+			return &a, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteAccount(ctx context.Context, site, id string) error {
 	return c.deleteAccount(ctx, site, id)
 }

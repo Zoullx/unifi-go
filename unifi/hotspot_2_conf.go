@@ -12,6 +12,21 @@ func (c *client) GetHotspot2Conf(ctx context.Context, site, id string) (*Hotspot
 	return c.getHotspot2Conf(ctx, site, id)
 }
 
+func (c *client) GetHotspot2ConfByName(ctx context.Context, site, name string) (*Hotspot2Conf, error) {
+	hotspot2Confs, err := c.listHotspot2Conf(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, h := range hotspot2Confs {
+		if h.Name == name {
+			return &h, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteHotspot2Conf(ctx context.Context, site, id string) error {
 	return c.deleteHotspot2Conf(ctx, site, id)
 }

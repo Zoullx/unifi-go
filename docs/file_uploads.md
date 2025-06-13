@@ -22,7 +22,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/filipowm/go-unifi/unifi"
+	"github.com/zoullx/go-unifi/unifi"
 )
 
 func main() {
@@ -117,12 +117,13 @@ func (c *client) UploadFile(ctx context.Context, apiPath, filePath, fieldName st
 Uploads a file to the UniFi controller from a file path.
 
 Parameters:
-- `ctx`: The context for the request
-- `apiPath`: The API endpoint path to upload the file to
-- `filePath`: Path to the file on disk
-- `fieldName`: Form field name for the file (defaults to "file" if empty)
-- `formFields`: Additional form fields to include in the upload (can be nil)
-- `respBody`: Structure to decode the response into (can be nil)
+
+-   `ctx`: The context for the request
+-   `apiPath`: The API endpoint path to upload the file to
+-   `filePath`: Path to the file on disk
+-   `fieldName`: Form field name for the file (defaults to "file" if empty)
+-   `formFields`: Additional form fields to include in the upload (can be nil)
+-   `respBody`: Structure to decode the response into (can be nil)
 
 ### UploadFileFromReader
 
@@ -133,17 +134,18 @@ func (c *client) UploadFileFromReader(ctx context.Context, apiPath string, reade
 Uploads a file to the UniFi controller from an io.Reader.
 
 Parameters:
-- `ctx`: The context for the request
-- `apiPath`: The API endpoint path to upload the file to
-- `reader`: Reader with the file content
-- `filename`: Name of the file to use in the upload
-- `fieldName`: Form field name for the file (defaults to "file" if empty)
-- `formFields`: Additional form fields to include in the upload (can be nil)
-- `respBody`: Structure to decode the response into (can be nil)
+
+-   `ctx`: The context for the request
+-   `apiPath`: The API endpoint path to upload the file to
+-   `reader`: Reader with the file content
+-   `filename`: Name of the file to use in the upload
+-   `fieldName`: Form field name for the file (defaults to "file" if empty)
+-   `formFields`: Additional form fields to include in the upload (can be nil)
+-   `respBody`: Structure to decode the response into (can be nil)
 
 ## Notes
 
-- These methods use `POST` requests for file uploads
-- The UniFi controller typically expects files to be uploaded with the field name "file", but this can be changed as needed
-- The content type for the request is automatically set to "multipart/form-data" with the correct boundary
-- All existing client features like interceptors, error handling, and request validation are preserved
+-   These methods use `POST` requests for file uploads
+-   The UniFi controller typically expects files to be uploaded with the field name "file", but this can be changed as needed
+-   The content type for the request is automatically set to "multipart/form-data" with the correct boundary
+-   All existing client features like interceptors, error handling, and request validation are preserved

@@ -12,6 +12,21 @@ func (c *client) GetPortProfile(ctx context.Context, site, id string) (*PortProf
 	return c.getPortProfile(ctx, site, id)
 }
 
+func (c *client) GetPortProfileByName(ctx context.Context, site, name string) (*PortProfile, error) {
+	portProfiles, err := c.listPortProfile(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, p := range portProfiles {
+		if p.Name == name {
+			return &p, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeletePortProfile(ctx context.Context, site, id string) error {
 	return c.deletePortProfile(ctx, site, id)
 }

@@ -5,14 +5,14 @@ I highly recommend to use the latest version of UniFi Go SDK, as well as update 
 
 ## Prerequisites
 
-- Go 1.16 or later
+-   Go 1.16 or later
 
 ## Installation
 
 Install the UniFi Go SDK by running:
 
 ```bash
-go get github.com/filipowm/go-unifi
+go get github.com/zoullx/go-unifi
 ```
 
 If you need to regenerate the client code from the API specifications, run:
@@ -110,7 +110,6 @@ go generate unifi/codegen.go
 
 This will update the generated models and REST methods according to the current UniFi Controller API specifications.
 
-
 ## Usage
 
 Once instantiated, the Bare Client provides direct access to the generated API methods. You can perform operations without the extra layers of processing provided by interceptors or custom validations.
@@ -131,7 +130,7 @@ for _, network := range networks {
 
 ## Checking if features are supported and enabled
 
-The UniFi Go SDK provides a way to check if a feature is supported and enabled/disabled on the UniFi Controller. 
+The UniFi Go SDK provides a way to check if a feature is supported and enabled/disabled on the UniFi Controller.
 This can be useful when you want to check if a feature is available before using it. Passed feature names are case-insensitive.
 
 **Example:**
@@ -144,9 +143,10 @@ if c.IsFeatureEnabled(ctx, "default", "feature-name") {
 }
 ```
 
-Library comes with a set of predefined feature names, which can be found in `github.com/filipowm/go-unifi/unifi/features` module. You can also use custom feature names.
+Library comes with a set of predefined feature names, which can be found in `github.com/zoullx/go-unifi/unifi/features` module. You can also use custom feature names.
 
 For example, you can check if the `features.ZoneBasedFirewallMigration` is available on the controller (no `unifi.ErrNotFound` raised) and enabled:
+
 ```go
 f, err := c.GetFeature(ctx, "default", features.ZoneBasedFirewallMigration)
 if err != nil {

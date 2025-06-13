@@ -20,6 +20,21 @@ func (c *client) GetFirewallZonePolicy(ctx context.Context, site, id string) (*F
 	return c.getFirewallZonePolicy(ctx, site, id)
 }
 
+func (c *client) GetFirewallZonePolicyByName(ctx context.Context, site, name string) (*FirewallZonePolicy, error) {
+	firewallZonePolicies, err := c.listFirewallZonePolicy(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, f := range firewallZonePolicies {
+		if f.Name == name {
+			return &f, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteFirewallZonePolicy(ctx context.Context, site, id string) error {
 	return c.deleteFirewallZonePolicy(ctx, site, id)
 }

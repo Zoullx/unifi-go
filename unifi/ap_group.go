@@ -16,6 +16,21 @@ func (c *client) GetAPGroup(ctx context.Context, site, id string) (*APGroup, err
 	return c.getAPGroup(ctx, site, id)
 }
 
+func (c *client) GetAPGroupByName(ctx context.Context, site, name string) (*APGroup, error) {
+	apGroups, err := c.ListAPGroup(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, a := range apGroups {
+		if a.Name == name {
+			return &a, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteAPGroup(ctx context.Context, site, id string) error {
 	return c.deleteAPGroup(ctx, site, id)
 }

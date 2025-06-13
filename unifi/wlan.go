@@ -20,6 +20,21 @@ func (c *client) GetWLAN(ctx context.Context, site, id string) (*WLAN, error) {
 	return c.getWLAN(ctx, site, id)
 }
 
+func (c *client) GetWLANByName(ctx context.Context, site, name string) (*WLAN, error) {
+	wlans, err := c.listWLAN(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, w := range wlans {
+		if w.Name == name {
+			return &w, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteWLAN(ctx context.Context, site, id string) error {
 	return c.deleteWLAN(ctx, site, id)
 }

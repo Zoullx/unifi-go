@@ -21,6 +21,20 @@ func (c *client) GetFirewallZone(ctx context.Context, site, id string) (*Firewal
 	return nil, ErrNotFound
 }
 
+func (c *client) GetFirewallZoneByName(ctx context.Context, site, name string) (*FirewallZone, error) {
+	firewallZones, err := c.listFirewallZone(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, f := range firewallZones {
+		if f.Name == name {
+			return &f, nil
+		}
+	}
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteFirewallZone(ctx context.Context, site, id string) error {
 	return c.deleteFirewallZone(ctx, site, id)
 }

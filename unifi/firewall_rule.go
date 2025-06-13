@@ -18,6 +18,21 @@ func (c *client) GetFirewallRule(ctx context.Context, site, id string) (*Firewal
 	return c.getFirewallRule(ctx, site, id)
 }
 
+func (c *client) GetFirewallRuleByName(ctx context.Context, site, name string) (*FirewallRule, error) {
+	firewallRules, err := c.listFirewallRule(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, f := range firewallRules {
+		if f.Name == name {
+			return &f, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteFirewallRule(ctx context.Context, site, id string) error {
 	return c.deleteFirewallRule(ctx, site, id)
 }

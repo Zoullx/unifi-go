@@ -12,6 +12,21 @@ func (c *client) GetHeatMap(ctx context.Context, site, id string) (*HeatMap, err
 	return c.getHeatMap(ctx, site, id)
 }
 
+func (c *client) GetHeatMapByName(ctx context.Context, site, name string) (*HeatMap, error) {
+	heatMaps, err := c.listHeatMap(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, h := range heatMaps {
+		if h.Name == name {
+			return &h, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteHeatMap(ctx context.Context, site, id string) error {
 	return c.deleteHeatMap(ctx, site, id)
 }

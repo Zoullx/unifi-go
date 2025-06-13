@@ -16,6 +16,21 @@ func (c *client) GetMediaFile(ctx context.Context, site, id string) (*MediaFile,
 	return c.getMediaFile(ctx, site, id)
 }
 
+func (c *client) GetMediaFileByName(ctx context.Context, site, name string) (*MediaFile, error) {
+	mediaFiles, err := c.listMediaFile(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, m := range mediaFiles {
+		if m.Name == name {
+			return &m, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteMediaFile(ctx context.Context, site, id string) error {
 	return c.deleteMediaFile(ctx, site, id)
 }

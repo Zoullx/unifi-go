@@ -58,6 +58,21 @@ func (c *client) GetDevice(ctx context.Context, site, id string) (*Device, error
 	return nil, ErrNotFound
 }
 
+func (c *client) GetDeviceByName(ctx context.Context, site, name string) (*Device, error) {
+	devices, err := c.ListDevice(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, d := range devices {
+		if d.Name == name {
+			return &d, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) AdoptDevice(ctx context.Context, site, mac string) error {
 	reqBody := struct {
 		Cmd string `json:"cmd"`

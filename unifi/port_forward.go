@@ -10,6 +10,21 @@ func (c *client) GetPortForward(ctx context.Context, site, id string) (*PortForw
 	return c.getPortForward(ctx, site, id)
 }
 
+func (c *client) GetPortForwardByName(ctx context.Context, site, name string) (*PortForward, error) {
+	portForwards, err := c.listPortForward(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, p := range portForwards {
+		if p.Name == name {
+			return &p, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeletePortForward(ctx context.Context, site, id string) error {
 	return c.deletePortForward(ctx, site, id)
 }

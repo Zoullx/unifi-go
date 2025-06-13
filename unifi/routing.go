@@ -24,6 +24,21 @@ func (c *client) GetRouting(ctx context.Context, site, id string) (*Routing, err
 	return c.getRouting(ctx, site, id)
 }
 
+func (c *client) GetRoutingByName(ctx context.Context, site, name string) (*Routing, error) {
+	routings, err := c.listRouting(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, r := range routings {
+		if r.Name == name {
+			return &r, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteRouting(ctx context.Context, site, id string) error {
 	return c.deleteRouting(ctx, site, id)
 }

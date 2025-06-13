@@ -10,6 +10,21 @@ func (c *client) GetUserGroup(ctx context.Context, site, id string) (*UserGroup,
 	return c.getUserGroup(ctx, site, id)
 }
 
+func (c *client) GetUserGroupByName(ctx context.Context, site, name string) (*UserGroup, error) {
+	userGroups, err := c.listUserGroup(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, u := range userGroups {
+		if u.Name == name {
+			return &u, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteUserGroup(ctx context.Context, site, id string) error {
 	return c.deleteUserGroup(ctx, site, id)
 }

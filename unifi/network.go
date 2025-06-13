@@ -54,6 +54,21 @@ func (c *client) GetNetwork(ctx context.Context, site, id string) (*Network, err
 	return c.getNetwork(ctx, site, id)
 }
 
+func (c *client) GetNetworkByName(ctx context.Context, site, name string) (*Network, error) {
+	networks, err := c.listNetwork(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, n := range networks {
+		if n.Name == name {
+			return &n, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) CreateNetwork(ctx context.Context, site string, d *Network) (*Network, error) {
 	return c.createNetwork(ctx, site, d)
 }

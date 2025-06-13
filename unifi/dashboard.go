@@ -14,6 +14,21 @@ func (c *client) GetDashboard(ctx context.Context, site, id string) (*Dashboard,
 	return c.getDashboard(ctx, site, id)
 }
 
+func (c *client) GetDashboardByName(ctx context.Context, site, name string) (*Dashboard, error) {
+	dashboards, err := c.listDashboard(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, d := range dashboards {
+		if d.Name == name {
+			return &d, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteDashboard(ctx context.Context, site, id string) error {
 	return c.deleteDashboard(ctx, site, id)
 }

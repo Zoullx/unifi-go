@@ -1,6 +1,6 @@
 # Migrating from `paultyng/go-unifi`
 
-This guide will help you migrate from `paultyng/go-unifi` to `filipowm/go-unifi`. The main differences are in how the client is initialized, while all client methods remain the same, with additional methods covering of the UniFi Controller API.
+This guide will help you migrate from `paultyng/go-unifi` to `zoullx/go-unifi`. The main differences are in how the client is initialized, while all client methods remain the same, with additional methods covering of the UniFi Controller API.
 
 ## Client Initialization Changes
 
@@ -31,7 +31,7 @@ if err != nil {
 }
 ```
 
-### filipowm/go-unifi Style
+### zoullx/go-unifi Style
 
 The new library provides a more structured and configurable approach:
 
@@ -57,42 +57,46 @@ if err != nil {
 ## Key Differences
 
 1. **Client Creation**:
-   - Old: Manual client creation and configuration using setters. Client used is a struct.
-   - New: Builder pattern with `NewClient` function and `ClientConfig` struct. Client used is an [interface](../unifi/client.generated.go).
+
+    - Old: Manual client creation and configuration using setters. Client used is a struct.
+    - New: Builder pattern with `NewClient` function and `ClientConfig` struct. Client used is an [interface](../unifi/client.generated.go).
 
 2. **Authentication**:
-   - Old: Only username/password authentication with explicit `Login()` call
-   - New: Supports both API Key (recommended) and username/password authentication
-   - New: Login is handled automatically during client creation
+
+    - Old: Only username/password authentication with explicit `Login()` call
+    - New: Supports both API Key (recommended) and username/password authentication
+    - New: Login is handled automatically during client creation
 
 3. **HTTP Client Configuration**:
-   - Old: Manual HTTP client configuration with `SetHTTPClient` and manual creation of `http.Client` and `cookiejar.Jar`
-   - New: Built-in configuration options through `ClientConfig`:
-     - `HttpTransportCustomizer` for transport-level customization
-     - `HttpRoundTripperProvider` for complete HTTP client control
+
+    - Old: Manual HTTP client configuration with `SetHTTPClient` and manual creation of `http.Client` and `cookiejar.Jar`
+    - New: Built-in configuration options through `ClientConfig`:
+        - `HttpTransportCustomizer` for transport-level customization
+        - `HttpRoundTripperProvider` for complete HTTP client control
 
 4. **Removed unifi.APIError**:
-   - Old: `unifi.APIError` struct for API errors
-   - New: Standard `unifi.ServerError` struct for API errors
 
-5. **Additional Features in filipowm/go-unifi**:
-   - Validation modes (Soft, Hard, Disabled)
-   - Request/Response interceptors
-   - Custom error handling
-   - Comprehensive configuration options
+    - Old: `unifi.APIError` struct for API errors
+    - New: Standard `unifi.ServerError` struct for API errors
+
+5. **Additional Features in zoullx/go-unifi**:
+    - Validation modes (Soft, Hard, Disabled)
+    - Request/Response interceptors
+    - Custom error handling
+    - Comprehensive configuration options
 
 ## Migration Steps
 
-1. Replace the import from `github.com/paultyng/go-unifi` to `github.com/filipowm/go-unifi`
+1. Replace the import from `github.com/paultyng/go-unifi` to `github.com/zoullx/go-unifi`
 2. Replace manual client creation with `NewClient` and appropriate `ClientConfig`
 3. If using TLS skip verification, use the `VerifySSL` option in `ClientConfig`:
-   ```go
-   client, err := unifi.NewClient(&unifi.ClientConfig{
-       BaseURL: "https://unifi.localdomain",
-       APIKey:  "your-api-key",
-       VerifySSL: false,
-   })
-   ```
+    ```go
+    client, err := unifi.NewClient(&unifi.ClientConfig{
+        BaseURL: "https://unifi.localdomain",
+        APIKey:  "your-api-key",
+        VerifySSL: false,
+    })
+    ```
 4. Remove explicit `Login()` calls as they are now handled automatically, unless you use [bare client initialization](./getting_started.md#BareClientInitialization)
 5. Replace usage of `unifi.APIError` with `unifi.ServerError`
 

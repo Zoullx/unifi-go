@@ -40,9 +40,9 @@ if err != nil {
 
 The client has three modes of validation for the API models. The modes help to ensure that the data sent to the controller is correct.
 
-- **Soft Validation (`unifi.SoftValidation`)**: Logs warnings for invalid fields, but does not fail the request (default).
-- **Hard Validation (`unifi.HardValidation`)**: Returns an error for invalid fields, preventing the request from being sent.
-- **Disable Validation (`unifi.DisableValidation`)**: Disables all validations.
+-   **Soft Validation (`unifi.SoftValidation`)**: Logs warnings for invalid fields, but does not fail the request (default).
+-   **Hard Validation (`unifi.HardValidation`)**: Returns an error for invalid fields, preventing the request from being sent.
+-   **Disable Validation (`unifi.DisableValidation`)**: Disables all validations.
 
 Configure the validation mode as follows:
 
@@ -60,6 +60,7 @@ if err != nil {
 ## Customizing the HTTP Client
 
 There are two ways to customize the HTTP client used by the UniFi client:
+
 1. Using the `HttpTransportCustomizer`.
 2. Using the `HttpRoundTripperProvider`.
 
@@ -68,7 +69,7 @@ unless it returns `nil`, in which case the `HttpTransportCustomizer` is used if 
 
 ### Using `HttpTransportCustomizer`
 
-You can provide your own HTTP client transport configuration using the `HttpTransportCustomizer` callback. This is useful if you need to tweak connection settings like timeouts, idle connection settings, 
+You can provide your own HTTP client transport configuration using the `HttpTransportCustomizer` callback. This is useful if you need to tweak connection settings like timeouts, idle connection settings,
 or TLS configurations:
 
 ```go
@@ -106,7 +107,7 @@ c, err := unifi.NewClient(&unifi.ClientConfig{
 
 Interceptors let you hook into the request and response flow. They can be used for logging, metrics, or modifying requests/responses.
 
-Implement the [ClientInterceptor](https://pkg.go.dev/github.com/filipowm/go-unifi/unifi#ClientInterceptor) interface:
+Implement the [ClientInterceptor](https://pkg.go.dev/github.com/zoullx/go-unifi/unifi#ClientInterceptor) interface:
 
 ```go
 // LoggingInterceptor logs each request and response
@@ -134,7 +135,6 @@ if err != nil {
 
 This flexibility allows you to modify client behavior to suit your application's needs.
 
-
 ## Comprehensive Client Configuration Example
 
 The `ClientConfig` struct is the central configuration for initializing the UniFi client. It allows you to
@@ -155,7 +155,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/filipowm/go-unifi/unifi"
+	"github.com/zoullx/go-unifi/unifi"
 )
 
 // customTransportCustomizer customizes the HTTP transport, e.g., setting idle connection limits and TLS options.

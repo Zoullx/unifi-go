@@ -12,6 +12,21 @@ func (c *client) GetScheduleTask(ctx context.Context, site, id string) (*Schedul
 	return c.getScheduleTask(ctx, site, id)
 }
 
+func (c *client) GetScheduleTaskByName(ctx context.Context, site, name string) (*ScheduleTask, error) {
+	scheduleTasks, err := c.listScheduleTask(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, s := range scheduleTasks {
+		if s.Name == name {
+			return &s, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) CreateScheduleTask(ctx context.Context, site string, d *ScheduleTask) (*ScheduleTask, error) {
 	return c.createScheduleTask(ctx, site, d)
 }

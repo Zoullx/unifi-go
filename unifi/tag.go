@@ -16,6 +16,21 @@ func (c *client) GetTag(ctx context.Context, site, id string) (*Tag, error) {
 	return c.getTag(ctx, site, id)
 }
 
+func (c *client) GetTagByName(ctx context.Context, site, name string) (*Tag, error) {
+	tags, err := c.listTag(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, t := range tags {
+		if t.Name == name {
+			return &t, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteTag(ctx context.Context, site, id string) error {
 	return c.deleteTag(ctx, site, id)
 }

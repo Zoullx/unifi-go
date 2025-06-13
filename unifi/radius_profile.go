@@ -12,6 +12,21 @@ func (c *client) GetRADIUSProfile(ctx context.Context, site, id string) (*RADIUS
 	return c.getRADIUSProfile(ctx, site, id)
 }
 
+func (c *client) GetRADIUSProfileByName(ctx context.Context, site, name string) (*RADIUSProfile, error) {
+	radiusProfiles, err := c.listRADIUSProfile(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, r := range radiusProfiles {
+		if r.Name == name {
+			return &r, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteRADIUSProfile(ctx context.Context, site, id string) error {
 	return c.deleteRADIUSProfile(ctx, site, id)
 }

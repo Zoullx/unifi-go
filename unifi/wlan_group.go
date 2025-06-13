@@ -12,6 +12,21 @@ func (c *client) GetWLANGroup(ctx context.Context, site, id string) (*WLANGroup,
 	return c.getWLANGroup(ctx, site, id)
 }
 
+func (c *client) GetWLANGroupByName(ctx context.Context, site, name string) (*WLANGroup, error) {
+	wlanGroups, err := c.listWLANGroup(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, w := range wlanGroups {
+		if w.Name == name {
+			return &w, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteWLANGroup(ctx context.Context, site, id string) error {
 	return c.deleteWLANGroup(ctx, site, id)
 }

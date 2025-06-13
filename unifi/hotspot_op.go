@@ -12,6 +12,21 @@ func (c *client) GetHotspotOp(ctx context.Context, site, id string) (*HotspotOp,
 	return c.getHotspotOp(ctx, site, id)
 }
 
+func (c *client) GetHotspotOpByName(ctx context.Context, site, name string) (*HotspotOp, error) {
+	hotspotOps, err := c.listHotspotOp(ctx, site)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, h := range hotspotOps {
+		if h.Name == name {
+			return &h, nil
+		}
+	}
+
+	return nil, ErrNotFound
+}
+
 func (c *client) DeleteHotspotOp(ctx context.Context, site, id string) error {
 	return c.deleteHotspotOp(ctx, site, id)
 }

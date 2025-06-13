@@ -8,12 +8,12 @@ use interceptors effectively, handle errors robustly, and extend validations.
 For endpoints that are not directly covered by a specialized client method, the UniFi Go SDK provides a set of helper methods for making requests to UniFi API. These methods simplify API interactions
 by handling common tasks such as request construction, JSON marshaling of the request body, authentication, applying interceptors, error handling, and decoding the response:
 
-- **Do**: The core method that performs an HTTP request with a given method, API path, request body, and destination for decoding the response. It handles validation, URL construction, interceptors,
-  and error processing.
-- **Get**: A convenience wrapper around **Do** that executes an HTTP GET request.
-- **Post**: A convenience wrapper to perform an HTTP POST request.
-- **Put**: Similar to Post, but for HTTP PUT requests.
-- **Delete**: Performs an HTTP DELETE request.
+-   **Do**: The core method that performs an HTTP request with a given method, API path, request body, and destination for decoding the response. It handles validation, URL construction, interceptors,
+    and error processing.
+-   **Get**: A convenience wrapper around **Do** that executes an HTTP GET request.
+-   **Post**: A convenience wrapper to perform an HTTP POST request.
+-   **Put**: Similar to Post, but for HTTP PUT requests.
+-   **Delete**: Performs an HTTP DELETE request.
 
 These methods are used internally by higher level functions, such as those in `unifi/device.generated.go` and `unifi/device.go`. For example, when creating a new device, the SDK calls `Post` to send
 the device data to the UniFi Controller API, while `Get` is used to retrieve device information.
@@ -60,7 +60,7 @@ validation and error handling provided by the SDK.
 ## Interceptors and Middleware
 
 Interceptors provide hooks into the request/response cycle and can be used for logging, metrics collection, or modifying
-requests before they are sent. They implement the [ClientInterceptor](https://pkg.go.dev/github.com/filipowm/go-unifi/unifi#ClientInterceptor) interface.
+requests before they are sent. They implement the [ClientInterceptor](https://pkg.go.dev/github.com/zoullx/go-unifi/unifi#ClientInterceptor) interface.
 
 ### Example: Advanced Logging Interceptor
 
@@ -111,12 +111,13 @@ client, err := unifi.NewClient(config)
 ```
 
 Available logging levels are:
-- `unifi.DisabledLevel` - no logging
-- `unifi.TraceLevel` - most verbose level
-- `unifi.DebugLevel` - debug information
-- `unifi.InfoLevel` - default level, informational messages
-- `unifi.WarnLevel` - warning messages
-- `unifi.ErrorLevel` - error messages only
+
+-   `unifi.DisabledLevel` - no logging
+-   `unifi.TraceLevel` - most verbose level
+-   `unifi.DebugLevel` - debug information
+-   `unifi.InfoLevel` - default level, informational messages
+-   `unifi.WarnLevel` - warning messages
+-   `unifi.ErrorLevel` - error messages only
 
 Then `Logger` methods are available to be used within the client:
 
@@ -195,18 +196,18 @@ if err != nil {
 
 ## Extending Validations
 
-If the default validations do not meet your needs, you can implement custom validation logic. Extend the SDK's validation rules by wrapping or augmenting the existing ones. For example, 
+If the default validations do not meet your needs, you can implement custom validation logic. Extend the SDK's validation rules by wrapping or augmenting the existing ones. For example,
 you can create a custom validator function and integrate it into your client initialization. Check [validation.go](../unifi/validation.go) for details.
 
 ## Contributing and Extending the SDK
 
 The UniFi Go SDK is designed to be adaptable:
 
-- **Feature Requests:** If the SDK does not support a particular API endpoint, consider contributing by opening an issue or a pull request.
-- **Custom Extensions:** You can fork the SDK and add custom methods or enhancements that fit your application needs. But I would greatly appreciate if you could contribute them back to the main repository.
-- **Community Support:** Join our community discussions to share improvements and ask for guidance on advanced topics.
+-   **Feature Requests:** If the SDK does not support a particular API endpoint, consider contributing by opening an issue or a pull request.
+-   **Custom Extensions:** You can fork the SDK and add custom methods or enhancements that fit your application needs. But I would greatly appreciate if you could contribute them back to the main repository.
+-   **Community Support:** Join our community discussions to share improvements and ask for guidance on advanced topics.
 
-For more details on contributing, see the [Contributing Guidelines](https://github.com/filipowm/go-unifi/blob/main/CONTRIBUTING.md).
+For more details on contributing, see the [Contributing Guidelines](https://github.com/zoullx/go-unifi/blob/main/CONTRIBUTING.md).
 
 ---
 

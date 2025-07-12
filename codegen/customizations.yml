@@ -92,7 +92,6 @@ customizations:
         returns:
           - "error"
 
-
       - name: "AdoptDevice"
         comment: "AdoptDevice adopts a device by MAC address."
         resourceName: "Device"
@@ -183,6 +182,16 @@ customizations:
         returns:
           - "[]Site"
           - "error"
+      - name: "CreateSiteByModel"
+        resourceName: "Site"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "d"
+            type: "*Site"
+        returns:
+          - "*Site"
+          - "error"
       - name: "DeleteSite"
         resourceName: "Site"
         params:
@@ -204,6 +213,16 @@ customizations:
             type: "string"
         returns:
           - "[]Site"
+          - "error"
+      - name: "UpdateSiteByModel"
+        resourceName: "Site"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "d"
+            type: "*Site"
+        returns:
+          - "*Site"
           - "error"
       - name: "GetSystemInfo"
         resourceName: "SysInfo"
@@ -400,6 +419,342 @@ customizations:
         returns:
           - "*PortalFile"
           - "error"
+      - name: "GetAccountByName"
+        resourceName: "Account"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*Account"
+          - "error"
+      - name: "GetAPGroupByName"
+        resourceName: "APGroup"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*APGroup"
+          - "error"
+      - name: "GetBroadcastGroupByName"
+        resourceName: "BroadcastGroup"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*BroadcastGroup"
+          - "error"
+      - name: "GetDashboardByName"
+        resourceName: "Dashboard"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*Dashboard"
+          - "error"
+      - name: "GetDeviceByName"
+        resourceName: "Device"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*Device"
+          - "error"
+      - name: "GetDHCPOptionByName"
+        resourceName: "DHCPOption"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*DHCPOption"
+          - "error"
+      - name: "GetFirewallGroupByName"
+        resourceName: "FirewallGroup"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*FirewallGroup"
+          - "error"
+      - name: "GetFirewallRuleByName"
+        resourceName: "FirewallRule"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*FirewallRule"
+          - "error"
+      - name: "GetFirewallZonePolicyByName"
+        resourceName: "FirewallZonePolicy"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*FirewallZonePolicy"
+          - "error"
+      - name: "GetFirewallZoneByName"
+        resourceName: "FirewallZone"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*FirewallZone"
+          - "error"
+      - name: "GetHeatMapByName"
+        resourceName: "HeatMap"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*HeatMap"
+          - "error"
+      - name: "GetHotspot2ConfByName"
+        resourceName: "Hotspot2Conf"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*Hotspot2Conf"
+          - "error"
+      - name: "GetHotspotOpByName"
+        resourceName: "HotspotOp"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*HotspotOp"
+          - "error"
+      - name: "GetHotspotPackageByName"
+        resourceName: "HotspotPackage"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*HotspotPackage"
+          - "error"
+      - name: "GetMapByName"
+        resourceName: "Map"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*Map"
+          - "error"
+      - name: "GetMediaFileByName"
+        resourceName: "MediaFile"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*MediaFile"
+          - "error"
+      - name: "GetNetworkByName"
+        resourceName: "Network"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*Network"
+          - "error"
+      - name: "GetPortForwardByName"
+        resourceName: "PortForward"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*PortForward"
+          - "error"
+      - name: "GetPortProfileByName"
+        resourceName: "PortProfile"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*PortProfile"
+          - "error"
+      - name: "GetRADIUSProfileByName"
+        resourceName: "RADIUSProfile"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*RADIUSProfile"
+          - "error"
+      - name: "GetRoutingByName"
+        resourceName: "Routing"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*Routing"
+          - "error"
+      - name: "GetScheduleTaskByName"
+        resourceName: "ScheduleTask"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*ScheduleTask"
+          - "error"
+      - name: "GetSpatialRecordByName"
+        resourceName: "SpatialRecord"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*SpatialRecord"
+          - "error"
+      - name: "GetTagByName"
+        resourceName: "Tag"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*Tag"
+          - "error"
+      - name: "GetUserGroupByName"
+        resourceName: "UserGroup"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*UserGroup"
+          - "error"
+      - name: "GetUserByName"
+        resourceName: "User"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*User"
+          - "error"
+      - name: "GetWLANGroupByName"
+        resourceName: "WLANGroup"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*WLANGroup"
+          - "error"
+      - name: "GetWLANByName"
+        resourceName: "WLAN"
+        params:
+          - name: "ctx"
+            type: "context.Context"
+          - name: "site"
+            type: "string"
+          - name: "name"
+            type: "string"
+        returns:
+          - "*WLAN"
+          - "error"
   resources:
     Account:
       fields:
@@ -423,7 +778,7 @@ customizations:
     DNSRecord:
       resourcePath: "static-dns"
     DescribedFeature:
-      resourcePath: "described-features?includeSystemFeatures=true"  # TODO hack to get all features, because query params in requests are not yet supported
+      resourcePath: "described-features?includeSystemFeatures=true" # TODO hack to get all features, because query params in requests are not yet supported
     Device:
       fields:
         _all:
@@ -485,6 +840,10 @@ customizations:
           ifFieldType: "bool"
           customUnmarshalType: "*bool"
           customUnmarshalFunc: "emptyBoolToTrue"
+        IPV6Enabled:
+          ifFieldType: "bool"
+          customUnmarshalType: "*bool"
+          customUnmarshalFunc: "emptyBoolToTrue"
         WANUsername:
           omitEmpty: true
         XWANPassword:
@@ -539,3 +898,7 @@ customizations:
       fields:
         ScheduleWithDuration:
           omitEmpty: false
+        PassphraseAutogenerated:
+          ifFieldType: "bool"
+          customUnmarshalType: "*bool"
+          customUnmarshalFunc: "emptyBoolToTrue"

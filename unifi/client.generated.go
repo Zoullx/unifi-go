@@ -49,6 +49,8 @@ type Client interface {
 	// GetAPGroup retrieves a resource
 	GetAPGroup(ctx context.Context, site string, id string) (*APGroup, error)
 
+	GetAPGroupByName(ctx context.Context, site string, name string) (*APGroup, error)
+
 	// ListAPGroup lists the resources
 	ListAPGroup(ctx context.Context, site string) ([]APGroup, error)
 
@@ -68,6 +70,8 @@ type Client interface {
 	// GetAccount retrieves a resource
 	GetAccount(ctx context.Context, site string, id string) (*Account, error)
 
+	GetAccountByName(ctx context.Context, site string, name string) (*Account, error)
+
 	// ListAccount lists the resources
 	ListAccount(ctx context.Context, site string) ([]Account, error)
 
@@ -86,6 +90,8 @@ type Client interface {
 
 	// GetBroadcastGroup retrieves a resource
 	GetBroadcastGroup(ctx context.Context, site string, id string) (*BroadcastGroup, error)
+
+	GetBroadcastGroupByName(ctx context.Context, site string, name string) (*BroadcastGroup, error)
 
 	// ListBroadcastGroup lists the resources
 	ListBroadcastGroup(ctx context.Context, site string) ([]BroadcastGroup, error)
@@ -125,6 +131,8 @@ type Client interface {
 	// GetDHCPOption retrieves a resource
 	GetDHCPOption(ctx context.Context, site string, id string) (*DHCPOption, error)
 
+	GetDHCPOptionByName(ctx context.Context, site string, name string) (*DHCPOption, error)
+
 	// ListDHCPOption lists the resources
 	ListDHCPOption(ctx context.Context, site string) ([]DHCPOption, error)
 
@@ -163,6 +171,8 @@ type Client interface {
 	// GetDashboard retrieves a resource
 	GetDashboard(ctx context.Context, site string, id string) (*Dashboard, error)
 
+	GetDashboardByName(ctx context.Context, site string, name string) (*Dashboard, error)
+
 	// ListDashboard lists the resources
 	ListDashboard(ctx context.Context, site string) ([]Dashboard, error)
 
@@ -198,6 +208,8 @@ type Client interface {
 	GetDevice(ctx context.Context, site string, id string) (*Device, error)
 
 	GetDeviceByMAC(ctx context.Context, site string, mac string) (*Device, error)
+
+	GetDeviceByName(ctx context.Context, site string, name string) (*Device, error)
 
 	// ListDevice lists the resources
 	ListDevice(ctx context.Context, site string) ([]Device, error)
@@ -237,6 +249,8 @@ type Client interface {
 	// GetFirewallGroup retrieves a resource
 	GetFirewallGroup(ctx context.Context, site string, id string) (*FirewallGroup, error)
 
+	GetFirewallGroupByName(ctx context.Context, site string, name string) (*FirewallGroup, error)
+
 	// ListFirewallGroup lists the resources
 	ListFirewallGroup(ctx context.Context, site string) ([]FirewallGroup, error)
 
@@ -255,6 +269,8 @@ type Client interface {
 
 	// GetFirewallRule retrieves a resource
 	GetFirewallRule(ctx context.Context, site string, id string) (*FirewallRule, error)
+
+	GetFirewallRuleByName(ctx context.Context, site string, name string) (*FirewallRule, error)
 
 	// ListFirewallRule lists the resources
 	ListFirewallRule(ctx context.Context, site string) ([]FirewallRule, error)
@@ -277,6 +293,8 @@ type Client interface {
 	// GetFirewallZone retrieves a resource
 	GetFirewallZone(ctx context.Context, site string, id string) (*FirewallZone, error)
 
+	GetFirewallZoneByName(ctx context.Context, site string, name string) (*FirewallZone, error)
+
 	// ListFirewallZone lists the resources
 	ListFirewallZone(ctx context.Context, site string) ([]FirewallZone, error)
 
@@ -295,6 +313,8 @@ type Client interface {
 
 	// GetFirewallZonePolicy retrieves a resource
 	GetFirewallZonePolicy(ctx context.Context, site string, id string) (*FirewallZonePolicy, error)
+
+	GetFirewallZonePolicyByName(ctx context.Context, site string, name string) (*FirewallZonePolicy, error)
 
 	// ListFirewallZonePolicy lists the resources
 	ListFirewallZonePolicy(ctx context.Context, site string) ([]FirewallZonePolicy, error)
@@ -316,6 +336,8 @@ type Client interface {
 
 	// GetHeatMap retrieves a resource
 	GetHeatMap(ctx context.Context, site string, id string) (*HeatMap, error)
+
+	GetHeatMapByName(ctx context.Context, site string, name string) (*HeatMap, error)
 
 	// ListHeatMap lists the resources
 	ListHeatMap(ctx context.Context, site string) ([]HeatMap, error)
@@ -355,6 +377,8 @@ type Client interface {
 	// GetHotspot2Conf retrieves a resource
 	GetHotspot2Conf(ctx context.Context, site string, id string) (*Hotspot2Conf, error)
 
+	GetHotspot2ConfByName(ctx context.Context, site string, name string) (*Hotspot2Conf, error)
+
 	// ListHotspot2Conf lists the resources
 	ListHotspot2Conf(ctx context.Context, site string) ([]Hotspot2Conf, error)
 
@@ -373,6 +397,8 @@ type Client interface {
 
 	// GetHotspotOp retrieves a resource
 	GetHotspotOp(ctx context.Context, site string, id string) (*HotspotOp, error)
+
+	GetHotspotOpByName(ctx context.Context, site string, name string) (*HotspotOp, error)
 
 	// ListHotspotOp lists the resources
 	ListHotspotOp(ctx context.Context, site string) ([]HotspotOp, error)
@@ -393,6 +419,8 @@ type Client interface {
 	// GetHotspotPackage retrieves a resource
 	GetHotspotPackage(ctx context.Context, site string, id string) (*HotspotPackage, error)
 
+	GetHotspotPackageByName(ctx context.Context, site string, name string) (*HotspotPackage, error)
+
 	// ListHotspotPackage lists the resources
 	ListHotspotPackage(ctx context.Context, site string) ([]HotspotPackage, error)
 
@@ -411,6 +439,8 @@ type Client interface {
 
 	// GetMap retrieves a resource
 	GetMap(ctx context.Context, site string, id string) (*Map, error)
+
+	GetMapByName(ctx context.Context, site string, name string) (*Map, error)
 
 	// ListMap lists the resources
 	ListMap(ctx context.Context, site string) ([]Map, error)
@@ -431,6 +461,8 @@ type Client interface {
 	// GetMediaFile retrieves a resource
 	GetMediaFile(ctx context.Context, site string, id string) (*MediaFile, error)
 
+	GetMediaFileByName(ctx context.Context, site string, name string) (*MediaFile, error)
+
 	// ListMediaFile lists the resources
 	ListMediaFile(ctx context.Context, site string) ([]MediaFile, error)
 
@@ -449,6 +481,8 @@ type Client interface {
 
 	// GetNetwork retrieves a resource
 	GetNetwork(ctx context.Context, site string, id string) (*Network, error)
+
+	GetNetworkByName(ctx context.Context, site string, name string) (*Network, error)
 
 	// ListNetwork lists the resources
 	ListNetwork(ctx context.Context, site string) ([]Network, error)
@@ -469,6 +503,8 @@ type Client interface {
 	// GetPortForward retrieves a resource
 	GetPortForward(ctx context.Context, site string, id string) (*PortForward, error)
 
+	GetPortForwardByName(ctx context.Context, site string, name string) (*PortForward, error)
+
 	// ListPortForward lists the resources
 	ListPortForward(ctx context.Context, site string) ([]PortForward, error)
 
@@ -487,6 +523,8 @@ type Client interface {
 
 	// GetPortProfile retrieves a resource
 	GetPortProfile(ctx context.Context, site string, id string) (*PortProfile, error)
+
+	GetPortProfileByName(ctx context.Context, site string, name string) (*PortProfile, error)
 
 	// ListPortProfile lists the resources
 	ListPortProfile(ctx context.Context, site string) ([]PortProfile, error)
@@ -522,6 +560,8 @@ type Client interface {
 	// GetRADIUSProfile retrieves a resource
 	GetRADIUSProfile(ctx context.Context, site string, id string) (*RADIUSProfile, error)
 
+	GetRADIUSProfileByName(ctx context.Context, site string, name string) (*RADIUSProfile, error)
+
 	// ListRADIUSProfile lists the resources
 	ListRADIUSProfile(ctx context.Context, site string) ([]RADIUSProfile, error)
 
@@ -541,6 +581,8 @@ type Client interface {
 	// GetRouting retrieves a resource
 	GetRouting(ctx context.Context, site string, id string) (*Routing, error)
 
+	GetRoutingByName(ctx context.Context, site string, name string) (*Routing, error)
+
 	// ListRouting lists the resources
 	ListRouting(ctx context.Context, site string) ([]Routing, error)
 
@@ -559,6 +601,8 @@ type Client interface {
 
 	// GetScheduleTask retrieves a resource
 	GetScheduleTask(ctx context.Context, site string, id string) (*ScheduleTask, error)
+
+	GetScheduleTaskByName(ctx context.Context, site string, name string) (*ScheduleTask, error)
 
 	// ListScheduleTask lists the resources
 	ListScheduleTask(ctx context.Context, site string) ([]ScheduleTask, error)
@@ -916,6 +960,8 @@ type Client interface {
 
 	CreateSite(ctx context.Context, description string) ([]Site, error)
 
+	CreateSiteByModel(ctx context.Context, d *Site) (*Site, error)
+
 	DeleteSite(ctx context.Context, id string) ([]Site, error)
 
 	GetSite(ctx context.Context, id string) (*Site, error)
@@ -923,6 +969,8 @@ type Client interface {
 	ListSites(ctx context.Context) ([]Site, error)
 
 	UpdateSite(ctx context.Context, name string, description string) ([]Site, error)
+
+	UpdateSiteByModel(ctx context.Context, d *Site) (*Site, error)
 
 	// ==== client methods for SpatialRecord resource ====
 
@@ -934,6 +982,8 @@ type Client interface {
 
 	// GetSpatialRecord retrieves a resource
 	GetSpatialRecord(ctx context.Context, site string, id string) (*SpatialRecord, error)
+
+	GetSpatialRecordByName(ctx context.Context, site string, name string) (*SpatialRecord, error)
 
 	// ListSpatialRecord lists the resources
 	ListSpatialRecord(ctx context.Context, site string) ([]SpatialRecord, error)
@@ -957,6 +1007,8 @@ type Client interface {
 
 	// GetTag retrieves a resource
 	GetTag(ctx context.Context, site string, id string) (*Tag, error)
+
+	GetTagByName(ctx context.Context, site string, name string) (*Tag, error)
 
 	// ListTag lists the resources
 	ListTag(ctx context.Context, site string) ([]Tag, error)
@@ -983,6 +1035,8 @@ type Client interface {
 
 	GetUserByMAC(ctx context.Context, site string, mac string) (*User, error)
 
+	GetUserByName(ctx context.Context, site string, name string) (*User, error)
+
 	KickUserByMAC(ctx context.Context, site string, mac string) error
 
 	// ListUser lists the resources
@@ -1005,6 +1059,8 @@ type Client interface {
 
 	// GetUserGroup retrieves a resource
 	GetUserGroup(ctx context.Context, site string, id string) (*UserGroup, error)
+
+	GetUserGroupByName(ctx context.Context, site string, name string) (*UserGroup, error)
 
 	// ListUserGroup lists the resources
 	ListUserGroup(ctx context.Context, site string) ([]UserGroup, error)
@@ -1046,6 +1102,8 @@ type Client interface {
 	// GetWLAN retrieves a resource
 	GetWLAN(ctx context.Context, site string, id string) (*WLAN, error)
 
+	GetWLANByName(ctx context.Context, site string, name string) (*WLAN, error)
+
 	// ListWLAN lists the resources
 	ListWLAN(ctx context.Context, site string) ([]WLAN, error)
 
@@ -1062,6 +1120,8 @@ type Client interface {
 
 	// GetWLANGroup retrieves a resource
 	GetWLANGroup(ctx context.Context, site string, id string) (*WLANGroup, error)
+
+	GetWLANGroupByName(ctx context.Context, site string, name string) (*WLANGroup, error)
 
 	// ListWLANGroup lists the resources
 	ListWLANGroup(ctx context.Context, site string) ([]WLANGroup, error)

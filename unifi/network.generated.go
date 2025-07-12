@@ -114,8 +114,9 @@ type Network struct {
 	IPSecSeparateIkev2Networks                    bool                            `json:"ipsec_separate_ikev2_networks"`
 	IPSecTunnelIP                                 string                          `json:"ipsec_tunnel_ip,omitempty"` // ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\/([1-9]|[1-2][0-9]|3[0-2])$
 	IPSecTunnelIPEnabled                          bool                            `json:"ipsec_tunnel_ip_enabled"`
-	IPSubnet                                      string                          `json:"ip_subnet,omitempty"`                                                                    // ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\/([1-9]|[1-2][0-9]|3[0-2])$
-	IPV6ClientAddressAssignment                   string                          `json:"ipv6_client_address_assignment,omitempty" validate:"omitempty,oneof=slaac dhcpv6"`       // slaac|dhcpv6
+	IPSubnet                                      string                          `json:"ip_subnet,omitempty"`                                                              // ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\/([1-9]|[1-2][0-9]|3[0-2])$
+	IPV6ClientAddressAssignment                   string                          `json:"ipv6_client_address_assignment,omitempty" validate:"omitempty,oneof=slaac dhcpv6"` // slaac|dhcpv6
+	IPV6Enabled                                   bool                            `json:"ipv6_enabled,omitempty"`
 	IPV6InterfaceType                             string                          `json:"ipv6_interface_type,omitempty" validate:"omitempty,oneof=static pd single_network none"` // static|pd|single_network|none
 	IPV6PDAutoPrefixidEnabled                     bool                            `json:"ipv6_pd_auto_prefixid_enabled"`
 	IPV6PDInterface                               string                          `json:"ipv6_pd_interface,omitempty"` // wan[2-8]?

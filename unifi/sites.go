@@ -3,6 +3,7 @@ package unifi
 import (
 	"context"
 	"fmt"
+	"reflect"
 )
 
 type Site struct {
@@ -70,6 +71,38 @@ func (c *client) CreateSite(ctx context.Context, description string) ([]Site, er
 	return respBody.Data, nil
 }
 
+func (c *client) CreateSiteByModel(ctx context.Context, d *Site) (*Site, error) {
+	reqBody := map[string]interface{}{}
+
+	// Use reflection to transfer key value pairs from Site to reqBody
+	// so we can add the add-site cmd
+	v := reflect.ValueOf(d)
+	t := v.Type()
+	for i := 0; i < v.NumField(); i++ {
+		reqBody[t.Field(i).Name] = v.Field(i)
+	}
+
+	reqBody["cmd"] = "add-site"
+
+	var respBody struct {
+		Meta Meta   `json:"meta"`
+		Data []Site `json:"data"`
+	}
+
+	err := c.Post(ctx, "s/default/cmd/sitemgr", reqBody, &respBody)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(respBody.Data) != 1 {
+		return nil, ErrNotFound
+	}
+
+	new := respBody.Data[0]
+
+	return &new, nil
+}
+
 func (c *client) DeleteSite(ctx context.Context, id string) ([]Site, error) {
 	reqBody := struct {
 		Cmd  string `json:"cmd"`
@@ -112,4 +145,36 @@ func (c *client) UpdateSite(ctx context.Context, name, description string) ([]Si
 	}
 
 	return respBody.Data, nil
+}
+
+func (c *client) UpdateSiteByModel(ctx context.Context, d *Site) (*Site, error) {
+	reqBody := map[string]interface{}{}
+
+	// Use reflection to transfer key value pairs from Site to reqBody
+	// so we can add the add-site cmd
+	v := reflect.ValueOf(d)
+	t := v.Type()
+	for i := 0; i < v.NumField(); i++ {
+		reqBody[t.Field(i).Name] = v.Field(i)
+	}
+
+	reqBody["cmd"] = "add-site"
+
+	var respBody struct {
+		Meta Meta   `json:"meta"`
+		Data []Site `json:"data"`
+	}
+
+	err := c.Post(ctx, "s/default/cmd/sitemgr", reqBody, &respBody)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(respBody.Data) != 1 {
+		return nil, ErrNotFound
+	}
+
+	new := respBody.Data[0]
+
+	return &new, nil
 }
